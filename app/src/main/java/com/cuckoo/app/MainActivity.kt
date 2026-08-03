@@ -78,7 +78,9 @@ class MainActivity : AppCompatActivity() {
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val am = getSystemService(ALARM_SERVICE) as AlarmManager
-            if (!am.canScheduleExactAlarms()) {
+            val prefs = getSharedPreferences("cuckoo_prefs", MODE_PRIVATE)
+            if (!am.canScheduleExactAlarms() && !prefs.getBoolean("asked_exact_alarm", false)) {
+                prefs.edit().putBoolean("asked_exact_alarm", true).apply()
                 val intent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM).apply {
                     data = Uri.parse("package:$packageName")
                 }
