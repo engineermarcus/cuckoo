@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="32dp"
-    android:background="?attr/android:colorBackground">
+    android:background="?android:attr/colorBackground">
 
     <TextView
         android:id="@+id/textReviewTitle"
