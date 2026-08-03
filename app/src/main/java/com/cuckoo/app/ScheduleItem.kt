@@ -5,5 +5,7 @@ data class ScheduleItem(
     var label: String,
     var hour: Int,
     var minute: Int,
+    var endHour: Int,
+    var endMinute: Int,
     var enabled: Boolean = true
 )

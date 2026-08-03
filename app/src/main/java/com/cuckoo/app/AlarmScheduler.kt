@@ -13,6 +13,8 @@ object AlarmScheduler {
         val intent = Intent(context, AlarmReceiver::class.java).apply {
             putExtra("id", item.id)
             putExtra("label", item.label)
+            putExtra("endHour", item.endHour)
+            putExtra("endMinute", item.endMinute)
         }
         return PendingIntent.getBroadcast(
             context,

@@ -5,8 +5,6 @@ import android.app.PendingIntent
 import android.content.Intent
 import android.app.NotificationManager
 import android.content.Context
-import android.media.AudioAttributes
-import android.media.RingtoneManager
 import android.os.Build
 import androidx.core.app.NotificationCompat
 
@@ -15,15 +13,6 @@ object NotificationHelper {
 
     fun createChannel(context: Context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val soundUri = RingtoneManager.getActualDefaultRingtoneUri(
-                context, RingtoneManager.TYPE_ALARM
-            ) ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-
-            val audioAttributes = AudioAttributes.Builder()
-                .setUsage(AudioAttributes.USAGE_ALARM)
-                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                .build()
-
             val channel = NotificationChannel(
                 CHANNEL_ID,
                 "Cuckoo Alarms",
@@ -31,7 +20,7 @@ object NotificationHelper {
             ).apply {
                 description = "Schedule alarms for Cuckoo"
                 enableVibration(true)
-                setSound(soundUri, audioAttributes)
+                setSound(null, null) // sound handled by MediaPlayer in AlarmReceiver
             }
 
             val manager = context.getSystemService(NotificationManager::class.java)

@@ -2,43 +2,67 @@ package com.cuckoo.app
 
 import android.Manifest
 import android.app.AlarmManager
-import android.app.TimePickerDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
 import com.cuckoo.app.databinding.ActivityMainBinding
-import com.google.android.material.textfield.TextInputEditText
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var adapter: ScheduleAdapter
-    private lateinit var items: MutableList<ScheduleItem>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setSupportActionBar(binding.toolbar)
         NotificationHelper.createChannel(this)
         requestPermissionsIfNeeded()
 
-        items = ScheduleRepository.getItems(this)
-        adapter = ScheduleAdapter(
-            items,
-            onClick = { item -> showTimePicker(item) }
-        )
-        binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        binding.recyclerView.adapter = adapter
+        // default tab
+        if (savedInstanceState == null) {
+            loadFragment(ScheduleFragment())
+        }
 
-        AlarmScheduler.rescheduleAll(this)
+        binding.bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_schedule  -> loadFragment(ScheduleFragment())
+                R.id.nav_routine   -> loadFragment(RoutineFragment())
+                R.id.nav_analytics -> loadFragment(AnalyticsFragment())
+            }
+            true
+        }
+    }
+
+    private fun loadFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .commit()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_settings -> {
+                startActivity(Intent(this, SettingsActivity::class.java))
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun requestPermissionsIfNeeded() {
@@ -61,21 +85,5 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-    }
-
-    private fun showTimePicker(item: ScheduleItem) {
-        TimePickerDialog(this, { _, hour, minute ->
-            item.hour = hour
-            item.minute = minute
-            adapter.notifyDataSetChanged()
-            persistAndReschedule()
-        }, item.hour, item.minute, true).show()
-    }
-
-
-
-    private fun persistAndReschedule() {
-        ScheduleRepository.saveItems(this, items)
-        items.forEach { AlarmScheduler.schedule(this, it) }
     }
 }
