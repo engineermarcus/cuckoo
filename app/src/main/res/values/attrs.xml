@@ -1,0 +1,8 @@
+<resources>
+    <attr name="colorSuccess" format="color"/>
+    <attr name="colorError" format="color"/>
+    <attr name="colorInfo" format="color"/>
+    <attr name="colorSurfaceVariant" format="color"/>
+    <attr name="colorOnSurfaceSecondary" format="color"/>
+    <attr name="colorOnSurfaceMuted" format="color"/>
+</resources>

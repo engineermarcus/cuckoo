@@ -1,0 +1,22 @@
+<resources>
+    <color name="cuckoo_primary">#7C72E0</color>
+    <color name="cuckoo_primary_dark">#5B4FCF</color>
+    <color name="cuckoo_accent">#FF8A7A</color>
+
+    <color name="cuckoo_success">#4CAF50</color>
+    <color name="cuckoo_error">#F44336</color>
+    <color name="cuckoo_info">#4285F4</color>
+
+    <color name="cuckoo_background">#121212</color>
+    <color name="cuckoo_surface">#1D1D24</color>
+    <color name="cuckoo_surface_variant">#28282F</color>
+
+    <color name="cuckoo_on_background">#F2F2F5</color>
+    <color name="cuckoo_on_surface">#F2F2F5</color>
+    <color name="cuckoo_on_surface_secondary">#AAAAB4</color>
+    <color name="cuckoo_on_surface_muted">#7A7A84</color>
+
+    <color name="cuckoo_nav_bg">#1D1D24</color>
+    <color name="cuckoo_nav_selected">#7C72E0</color>
+    <color name="cuckoo_nav_unselected">#7A7A84</color>
+</resources>

@@ -1,0 +1,22 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.Cuckoo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/cuckoo_primary</item>
+        <item name="colorPrimaryDark">@color/cuckoo_primary_dark</item>
+        <item name="colorAccent">@color/cuckoo_accent</item>
+
+        <item name="colorSurface">@color/cuckoo_surface</item>
+        <item name="colorOnSurface">@color/cuckoo_on_surface</item>
+        <item name="android:colorBackground">@color/cuckoo_background</item>
+        <item name="colorOnBackground">@color/cuckoo_on_background</item>
+
+        <item name="colorSuccess">@color/cuckoo_success</item>
+        <item name="colorError">@color/cuckoo_error</item>
+        <item name="colorInfo">@color/cuckoo_info</item>
+        <item name="colorSurfaceVariant">@color/cuckoo_surface_variant</item>
+        <item name="colorOnSurfaceSecondary">@color/cuckoo_on_surface_secondary</item>
+        <item name="colorOnSurfaceMuted">@color/cuckoo_on_surface_muted</item>
+
+        <item name="android:navigationBarColor">@color/cuckoo_nav_bg</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+    </style>
+</resources>

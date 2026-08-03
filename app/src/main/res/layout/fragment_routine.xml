@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/android:colorBackground"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/textCurrentTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No active task"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="?attr/colorOnBackground"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/textTaskStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="?attr/colorOnSurfaceSecondary"
+            android:layout_marginBottom="24dp"/>
+
+        <TextView
+            android:id="@+id/textDurationCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="--:--:--"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            android:textColor="?attr/colorSuccess"
+            android:fontFamily="monospace"
+            android:layout_marginBottom="32dp"/>
+
+        <TextView
+            android:id="@+id/labelFrozenApps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FROZEN APPS"
+            android:textSize="11sp"
+            android:textColor="?attr/colorOnSurfaceMuted"
+            android:letterSpacing="0.1"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/textFrozenApps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="None"
+            android:textSize="14sp"
+            android:textColor="?attr/colorError"
+            android:gravity="center"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/textAccessibilityHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enable Cuckoo's Accessibility Service to actually freeze apps"
+            android:textSize="12sp"
+            android:textColor="?attr/colorInfo"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_marginBottom="32dp"/>
+
+        <TextView
+            android:id="@+id/labelCompletions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TIMES COMPLETED"
+            android:textSize="11sp"
+            android:textColor="?attr/colorOnSurfaceMuted"
+            android:letterSpacing="0.1"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/textCompletionCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:textColor="?attr/colorInfo"/>
+
+    </LinearLayout>
+
+</ScrollView>

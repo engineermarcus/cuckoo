@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Cuckoo</string>
+    <string name="accessibility_service_description">Lets Cuckoo send you back to the home screen when you open a distracting app during an active task.</string>
+</resources>
