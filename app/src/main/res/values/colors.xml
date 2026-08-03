@@ -1,0 +1,5 @@
+<resources>
+    <color name="cuckoo_primary">#5B4FCF</color>
+    <color name="cuckoo_primary_dark">#3F35A6</color>
+    <color name="cuckoo_accent">#FF6F61</color>
+</resources>
