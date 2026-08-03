@@ -26,6 +26,9 @@ jobs:
         with:
           gradle-version: '8.7'
 
+      - name: Clean build
+        run: gradle clean --no-daemon
+
       - name: Build debug APK
         env:
           CUCKOO_VERSION_CODE: ${{ github.run_number }}
