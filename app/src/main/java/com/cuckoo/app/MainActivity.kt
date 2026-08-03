@@ -33,17 +33,10 @@ class MainActivity : AppCompatActivity() {
         items = ScheduleRepository.getItems(this)
         adapter = ScheduleAdapter(
             items,
-            onToggle = { item, enabled ->
-                item.enabled = enabled
-                persistAndReschedule()
-            },
-            onClick = { item -> showTimePicker(item) },
-            onDelete = { item -> deleteItem(item) }
+            onClick = { item -> showTimePicker(item) }
         )
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapter
-
-        binding.fabAdd.setOnClickListener { showAddDialog() }
 
         AlarmScheduler.rescheduleAll(this)
     }
@@ -79,34 +72,7 @@ class MainActivity : AppCompatActivity() {
         }, item.hour, item.minute, true).show()
     }
 
-    private fun showAddDialog() {
-        val input = TextInputEditText(this)
-        input.hint = "Task name"
-        androidx.appcompat.app.AlertDialog.Builder(this)
-            .setTitle("New schedule item")
-            .setView(input)
-            .setPositiveButton("Next") { _, _ ->
-                val label = input.text?.toString()?.trim().orEmpty().ifEmpty { "Task" }
-                TimePickerDialog(this, { _, hour, minute ->
-                    val newItem = ScheduleItem(
-                        ScheduleRepository.nextId(this), label, hour, minute
-                    )
-                    items.add(newItem)
-                    adapter.notifyItemInserted(items.size - 1)
-                    persistAndReschedule()
-                }, 12, 0, true).show()
-            }
-            .setNegativeButton("Cancel", null)
-            .show()
-    }
 
-    private fun deleteItem(item: ScheduleItem) {
-        AlarmScheduler.cancel(this, item)
-        val index = items.indexOf(item)
-        items.remove(item)
-        if (index >= 0) adapter.notifyItemRemoved(index)
-        ScheduleRepository.saveItems(this, items)
-    }
 
     private fun persistAndReschedule() {
         ScheduleRepository.saveItems(this, items)

@@ -27,18 +27,4 @@
             android:textColor="#666666" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="✕"
-        android:textSize="18sp"
-        android:padding="8dp"
-        android:textColor="#CC0000" />
-
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/switchEnabled"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
 </LinearLayout>
