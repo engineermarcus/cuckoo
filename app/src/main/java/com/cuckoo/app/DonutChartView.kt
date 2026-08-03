@@ -2,6 +2,7 @@ package com.cuckoo.app
 
 import android.content.Context
 import android.graphics.*
+import android.text.TextPaint
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.View
@@ -24,7 +25,7 @@ class DonutChartView @JvmOverloads constructor(
         strokeWidth = 2f
         color = 0x66AAAAAA
     }
-    private val labelPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+    private val labelPaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
         textAlign = Paint.Align.LEFT
         textSize = 26f
     }
