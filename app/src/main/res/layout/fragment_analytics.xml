@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#121212"
     android:padding="24dp">
 
     <LinearLayout
@@ -10,7 +11,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:text="Discipline Score"
+            android:text="DISCIPLINE SCORE"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="11sp"
@@ -28,8 +29,32 @@
             android:textColor="#4CAF50"
             android:layout_marginBottom="32dp"/>
 
+        <com.cuckoo.app.DonutChartView
+            android:id="@+id/donutChart"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:layout_marginBottom="8dp"/>
+
         <TextView
-            android:text="Task Completion"
+            android:id="@+id/textTotalScreenTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="32dp"/>
+
+        <Button
+            android:id="@+id/btnGrantUsage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Grant Screen Time Permission"
+            android:backgroundTint="#4285F4"
+            android:visibility="gone"
+            android:layout_marginBottom="24dp"/>
+
+        <TextView
+            android:text="TASK COMPLETION"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="11sp"
@@ -45,7 +70,7 @@
             android:layout_marginBottom="32dp"/>
 
         <TextView
-            android:text="Screen Time"
+            android:text="SCREEN TIME"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="11sp"
@@ -60,5 +85,4 @@
             android:nestedScrollingEnabled="false"/>
 
     </LinearLayout>
-
 </ScrollView>

@@ -64,8 +64,8 @@ class RoutineFragment : Fragment() {
                     textFrozenApps.text = "Active during session"
 
                 } else {
-                    textCurrentTask.text = "Spawn time 🕊️"
-                    textTaskStatus.text  = "No active task — rest or reshuffle"
+                    textCurrentTask.text = "Spawn Time"
+                    textTaskStatus.text = "No active task - rest or reshuffle"
                     textDuration.text    = "--:--:--"
                     textDuration.setTextColor(0xFF888888.toInt())
                     textFrozenApps.text  = "None"

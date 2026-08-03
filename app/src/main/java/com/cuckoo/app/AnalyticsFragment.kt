@@ -1,13 +1,14 @@
 package com.cuckoo.app
 
+import android.app.usage.UsageStatsManager
+import android.content.Context
+import android.content.Intent
+import android.graphics.*
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
+import android.provider.Settings
+import android.view.*
+import android.widget.*
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import java.time.LocalDate
 
 class AnalyticsFragment : Fragment() {
@@ -17,21 +18,20 @@ class AnalyticsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val donutView       = view.findViewById<DonutChartView>(R.id.donutChart)
+        val textTotal       = view.findViewById<TextView>(R.id.textTotalScreenTime)
         val textScore       = view.findViewById<TextView>(R.id.textDisciplineScore)
-        val recyclerTasks   = view.findViewById<RecyclerView>(R.id.recyclerAnalytics)
-        val recyclerScreen  = view.findViewById<RecyclerView>(R.id.recyclerScreenTime)
+        val recyclerTasks   = view.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerAnalytics)
+        val recyclerScreen  = view.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerScreenTime)
+        val btnGrant        = view.findViewById<Button>(R.id.btnGrantUsage)
 
-        val items  = ScheduleRepository.getItems(requireContext())
+        // discipline score
         val events = EventRepository.getAll(requireContext())
-
-        // discipline score = done / (done + missed) * 100
         val done   = events.count { it.status == EventStatus.DONE }
         val missed = events.count { it.status == EventStatus.MISSED }
         val total  = done + missed
-        val score  = if (total == 0) "--" else "${(done * 100 / total)}%"
+        val score  = if (total == 0) "--" else "${done * 100 / total}%"
         textScore.text = score
-
-        // color score
         if (total > 0) {
             val pct = done * 100 / total
             textScore.setTextColor(when {
@@ -42,17 +42,74 @@ class AnalyticsFragment : Fragment() {
         }
 
         // task breakdown
+        val items = ScheduleRepository.getItems(requireContext())
         val taskStats = items.map { item ->
-            val itemDone   = events.count { it.scheduleId == item.id && it.status == EventStatus.DONE }
-            val itemMissed = events.count { it.scheduleId == item.id && it.status == EventStatus.MISSED }
-            Triple(item.label, itemDone, itemMissed)
+            Triple(item.label,
+                events.count { it.scheduleId == item.id && it.status == EventStatus.DONE },
+                events.count { it.scheduleId == item.id && it.status == EventStatus.MISSED })
         }
-
-        recyclerTasks.layoutManager = LinearLayoutManager(requireContext())
+        recyclerTasks.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(requireContext())
         recyclerTasks.adapter = TaskStatsAdapter(taskStats)
 
-        // screen time — placeholder until UsageStatsManager is wired
-        recyclerScreen.layoutManager = LinearLayoutManager(requireContext())
-        recyclerScreen.adapter = ScreenTimeAdapter(emptyList())
+        // usage stats
+        if (!hasUsagePermission()) {
+            btnGrant.visibility = View.VISIBLE
+            btnGrant.setOnClickListener {
+                startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
+            }
+            return
+        }
+
+        btnGrant.visibility = View.GONE
+        val usageList = getUsageStats()
+
+        if (usageList.isEmpty()) {
+            textTotal.text = "No screen time data yet"
+            return
+        }
+
+        val totalMs = usageList.sumOf { it.second }
+        val totalMin = totalMs / 60000
+        textTotal.text = "TODAY\n${formatTime(totalMin)}"
+
+        donutView.setData(usageList.map { (name, ms) ->
+            Pair(name, ms.toFloat() / totalMs)
+        })
+
+        recyclerScreen.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(requireContext())
+        recyclerScreen.adapter = ScreenTimeAdapter(usageList.map { (name, ms) ->
+            Pair(name, formatTime(ms / 60000))
+        })
+    }
+
+    private fun hasUsagePermission(): Boolean {
+        val usm = requireContext().getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
+        val now = System.currentTimeMillis()
+        val stats = usm.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, now - 86400000, now)
+        return stats != null && stats.isNotEmpty()
+    }
+
+    private fun getUsageStats(): List<Pair<String, Long>> {
+        val usm = requireContext().getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
+        val now = System.currentTimeMillis()
+        val midnight = now - (now % 86400000)
+        val stats = usm.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, midnight, now)
+        val pm = requireContext().packageManager
+        return stats
+            .filter { it.totalTimeInForeground > 60000 } // at least 1 min
+            .sortedByDescending { it.totalTimeInForeground }
+            .take(6)
+            .map { stat ->
+                val name = try {
+                    pm.getApplicationLabel(pm.getApplicationInfo(stat.packageName, 0)).toString()
+                } catch (e: Exception) { stat.packageName }
+                Pair(name, stat.totalTimeInForeground)
+            }
+    }
+
+    private fun formatTime(minutes: Long): String {
+        val h = minutes / 60
+        val m = minutes % 60
+        return if (h > 0) "${h}h ${m}m" else "${m}m"
     }
 }
