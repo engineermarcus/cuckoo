@@ -6,7 +6,6 @@ import android.content.Intent
 import android.media.AudioAttributes
 import android.media.AudioManager
 import android.media.MediaPlayer
-import android.media.RingtoneManager
 
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
@@ -15,7 +14,7 @@ class AlarmReceiver : BroadcastReceiver() {
 
         NotificationHelper.createChannel(context)
         NotificationHelper.show(context, id, label)
-        playSound(context)
+        playSound(context, id)
 
         // reschedule same item for next day
         val item = ScheduleRepository.getItems(context).find { it.id == id }
@@ -24,11 +23,20 @@ class AlarmReceiver : BroadcastReceiver() {
         }
     }
 
-    private fun playSound(context: Context) {
+    private fun getRingtone(id: Int): Int = when (id) {
+        1 -> R.raw.math
+        2 -> R.raw.chores
+        3 -> R.raw.cpp
+        4 -> R.raw.kotlin
+        5 -> R.raw.electronics
+        6 -> R.raw.electromagnetism
+        7 -> R.raw.review
+        else -> R.raw.math
+    }
+
+    private fun playSound(context: Context, id: Int) {
         try {
-            val uri = RingtoneManager.getActualDefaultRingtoneUri(
-                context, RingtoneManager.TYPE_ALARM
-            ) ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+            val uri = android.net.Uri.parse("android.resource://${context.packageName}/${getRingtone(id)}")
 
             val player = MediaPlayer()
             player.setAudioAttributes(
