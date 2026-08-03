@@ -1,0 +1,7 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.Cuckoo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/cuckoo_primary</item>
+        <item name="colorPrimaryDark">@color/cuckoo_primary_dark</item>
+        <item name="colorAccent">@color/cuckoo_accent</item>
+    </style>
+</resources>
