@@ -30,11 +30,6 @@ class SettingsActivity : AppCompatActivity() {
     private fun refreshStatus() {
         val enabled = AppFreezeService.isEnabled(this)
         textStatus.text = if (enabled) "Currently enabled" else "Currently disabled"
-        val typedValue = android.util.TypedValue()
-        theme.resolveAttribute(
-            if (enabled) R.attr.colorSuccess else R.attr.colorError,
-            typedValue, true
-        )
-        textStatus.setTextColor(typedValue.data)
+        textStatus.setTextColor(androidx.core.content.ContextCompat.getColor(this, if (enabled) R.color.cuckoo_success else R.color.cuckoo_error))
     }
 }

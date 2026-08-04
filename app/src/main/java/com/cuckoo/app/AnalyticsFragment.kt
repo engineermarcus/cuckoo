@@ -19,9 +19,7 @@ class AnalyticsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val donutView       = view.findViewById<DonutChartView>(R.id.donutChart)
-        val typedValue      = android.util.TypedValue()
-        requireContext().theme.resolveAttribute(R.attr.colorOnSurfaceSecondary, typedValue, true)
-        donutView.setLabelColor(typedValue.data)
+        donutView.setLabelColor(androidx.core.content.ContextCompat.getColor(requireContext(), R.color.cuckoo_on_surface_secondary))
         val textTotal       = view.findViewById<TextView>(R.id.textTotalScreenTime)
         val textScore       = view.findViewById<TextView>(R.id.textDisciplineScore)
         val recyclerTasks   = view.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerAnalytics)
