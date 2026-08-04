@@ -31,12 +31,22 @@ class ScheduleFragment : Fragment() {
     }
 
     private fun showTimePicker(item: ScheduleItem) {
-        TimePickerDialog(requireContext(), { _, hour, minute ->
-            item.hour = hour
-            item.minute = minute
-            adapter.notifyDataSetChanged()
-            ScheduleRepository.saveItems(requireContext(), items)
-            AlarmScheduler.rescheduleAll(requireContext())
-        }, item.hour, item.minute, true).show()
+        TimePickerDialog(requireContext(), { _, startHour, startMinute ->
+            item.hour = startHour
+            item.minute = startMinute
+
+            TimePickerDialog(requireContext(), { _, endHour, endMinute ->
+                item.endHour = endHour
+                item.endMinute = endMinute
+                adapter.notifyDataSetChanged()
+                ScheduleRepository.saveItems(requireContext(), items)
+                AlarmScheduler.rescheduleAll(requireContext())
+            }, item.endHour, item.endMinute, true).apply {
+                setTitle("Set end time")
+            }.show()
+
+        }, item.hour, item.minute, true).apply {
+            setTitle("Set start time")
+        }.show()
     }
 }

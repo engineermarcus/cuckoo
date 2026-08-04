@@ -20,6 +20,10 @@ class SettingsActivity : AppCompatActivity() {
         findViewById<MaterialButton>(R.id.btnEnableAccessibility).setOnClickListener {
             startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
         }
+
+        findViewById<MaterialButton>(R.id.btnManageApps).setOnClickListener {
+            startActivity(Intent(this, ManageAppsActivity::class.java))
+        }
     }
 
     override fun onResume() {

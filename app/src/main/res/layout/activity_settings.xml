@@ -40,4 +40,35 @@
         android:textColor="@color/cuckoo_error"
         android:text="Currently disabled"/>
 
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/cuckoo_surface_variant"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="STUDY APPS"
+        android:textSize="11sp"
+        android:textColor="@color/cuckoo_on_surface_muted"
+        android:letterSpacing="0.1"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Apps allowed to stay open during a task."
+        android:textSize="14sp"
+        android:textColor="@color/cuckoo_on_surface_secondary"
+        android:layout_marginBottom="16dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnManageApps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Manage Study Apps"
+        android:backgroundTint="@color/cuckoo_info"/>
 </LinearLayout>

@@ -29,6 +29,12 @@ class MainActivity : AppCompatActivity() {
         NotificationHelper.createChannel(this)
         requestPermissionsIfNeeded()
 
+        if (!AppWhitelistRepository.isOnboarded(this)) {
+            startActivity(Intent(this, OnboardingActivity::class.java))
+            finish()
+            return
+        }
+
         // default tab
         if (savedInstanceState == null) {
             loadFragment(ScheduleFragment())

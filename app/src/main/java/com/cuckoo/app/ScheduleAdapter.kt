@@ -25,7 +25,10 @@ class ScheduleAdapter(
     override fun onBindViewHolder(holder: VH, position: Int) {
         val item = items[position]
         holder.label.text = item.label
-        holder.time.text = String.format("%02d:%02d", item.hour, item.minute)
+        holder.time.text = String.format(
+            "%02d:%02d - %02d:%02d",
+            item.hour, item.minute, item.endHour, item.endMinute
+        )
         holder.itemView.setOnClickListener { onClick(item) }
     }
 

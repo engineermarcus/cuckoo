@@ -42,7 +42,8 @@ class AppFreezeService : AccessibilityService() {
     private fun isAllowed(pkg: String): Boolean {
         if (pkg == packageName) return true
         if (ALLOWLIST_PREFIXES.any { pkg.startsWith(it) }) return true
-        return pkg == defaultHomePackage() || pkg == defaultDialerPackage()
+        if (pkg == defaultHomePackage() || pkg == defaultDialerPackage()) return true
+        return AppWhitelistRepository.getWhitelist(applicationContext).contains(pkg)
     }
 
     private fun defaultHomePackage(): String? {

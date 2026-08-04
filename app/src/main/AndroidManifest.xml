@@ -72,6 +72,16 @@
             android:exported="false"
             android:theme="@style/Theme.Cuckoo" />
 
+        <activity
+            android:name=".OnboardingActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Cuckoo" />
+
+        <activity
+            android:name=".ManageAppsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Cuckoo" />
+
     </application>
 
 </manifest>
