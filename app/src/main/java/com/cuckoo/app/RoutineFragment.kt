@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.google.android.material.button.MaterialButton
 import androidx.fragment.app.Fragment
 import java.time.LocalDate
 import java.time.LocalTime
@@ -29,7 +30,7 @@ class RoutineFragment : Fragment() {
         val textTaskStatus     = view.findViewById<TextView>(R.id.textTaskStatus)
         val textDuration       = view.findViewById<TextView>(R.id.textDurationCounter)
         val textFrozenApps     = view.findViewById<TextView>(R.id.textFrozenApps)
-        val textAccessHint     = view.findViewById<TextView>(R.id.textAccessibilityHint)
+        val textAccessHint     = view.findViewById<MaterialButton>(R.id.textAccessibilityHint)
         val textCompletions    = view.findViewById<TextView>(R.id.textCompletionCount)
 
         textAccessHint.setOnClickListener {
