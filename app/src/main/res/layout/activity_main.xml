@@ -14,7 +14,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/cuckoo_primary"
             android:title="@string/app_name"
             app:titleTextColor="@android:color/white" />
 
@@ -32,11 +32,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="?attr/colorSurface"
+        android:background="@color/cuckoo_surface"
         android:elevation="8dp"
         app:itemIconTint="@color/nav_item_color"
         app:itemTextColor="@color/nav_item_color"
-        app:itemRippleColor="?attr/colorPrimary"
+        app:itemRippleColor="@color/cuckoo_primary"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu" />
 

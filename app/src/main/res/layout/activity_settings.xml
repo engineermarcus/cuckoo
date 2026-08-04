@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:text="APP FREEZING"
         android:textSize="11sp"
-        android:textColor="?attr/colorOnSurfaceMuted"
+        android:textColor="@color/cuckoo_on_surface_muted"
         android:letterSpacing="0.1"
         android:layout_marginBottom="8dp"/>
 
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:text="Cuckoo needs Accessibility access to freeze other apps while a task is active."
         android:textSize="14sp"
-        android:textColor="?attr/colorOnSurfaceSecondary"
+        android:textColor="@color/cuckoo_on_surface_secondary"
         android:layout_marginBottom="16dp"/>
 
     <com.google.android.material.button.MaterialButton
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enable Accessibility Service"
-        android:backgroundTint="?attr/colorPrimary"
+        android:backgroundTint="@color/cuckoo_primary"
         android:layout_marginBottom="8dp"/>
 
     <TextView
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:textSize="13sp"
         android:textStyle="bold"
-        android:textColor="?attr/colorError"
+        android:textColor="@color/cuckoo_error"
         android:text="Currently disabled"/>
 
 </LinearLayout>

@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="11sp"
-            android:textColor="?attr/colorOnSurfaceMuted"
+            android:textColor="@color/cuckoo_on_surface_muted"
             android:letterSpacing="0.1"
             android:layout_marginBottom="4dp"/>
 
@@ -26,7 +26,7 @@
             android:text="--"
             android:textSize="48sp"
             android:textStyle="bold"
-            android:textColor="?attr/colorSuccess"
+            android:textColor="@color/cuckoo_success"
             android:layout_marginBottom="32dp"/>
 
         <com.cuckoo.app.DonutChartView
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="16sp"
-            android:textColor="?attr/colorOnBackground"
+            android:textColor="@color/cuckoo_on_background"
             android:layout_marginBottom="32dp"/>
 
         <Button
@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Grant Screen Time Permission"
-            android:backgroundTint="?attr/colorInfo"
+            android:backgroundTint="@color/cuckoo_info"
             android:visibility="gone"
             android:layout_marginBottom="24dp"/>
 
@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="11sp"
-            android:textColor="?attr/colorOnSurfaceMuted"
+            android:textColor="@color/cuckoo_on_surface_muted"
             android:letterSpacing="0.1"
             android:layout_marginBottom="8dp"/>
 
@@ -74,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="11sp"
-            android:textColor="?attr/colorOnSurfaceMuted"
+            android:textColor="@color/cuckoo_on_surface_muted"
             android:letterSpacing="0.1"
             android:layout_marginBottom="8dp"/>
 

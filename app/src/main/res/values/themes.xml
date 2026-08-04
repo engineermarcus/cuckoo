@@ -9,12 +9,6 @@
         <item name="android:colorBackground">@color/cuckoo_background</item>
         <item name="colorOnBackground">@color/cuckoo_on_background</item>
 
-        <item name="colorSuccess">@color/cuckoo_success</item>
-        <item name="colorError">@color/cuckoo_error</item>
-        <item name="colorInfo">@color/cuckoo_info</item>
-        <item name="colorSurfaceVariant">@color/cuckoo_surface_variant</item>
-        <item name="colorOnSurfaceSecondary">@color/cuckoo_on_surface_secondary</item>
-        <item name="colorOnSurfaceMuted">@color/cuckoo_on_surface_muted</item>
 
         <item name="android:navigationBarColor">@color/cuckoo_nav_bg</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>

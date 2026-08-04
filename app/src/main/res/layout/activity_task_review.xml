@@ -15,7 +15,7 @@
         android:textSize="22sp"
         android:textStyle="bold"
         android:gravity="center"
-        android:textColor="?attr/colorOnBackground"
+        android:textColor="@color/cuckoo_on_background"
         android:layout_marginBottom="12dp"/>
 
     <TextView
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"
-        android:textColor="?attr/colorOnSurfaceSecondary"
+        android:textColor="@color/cuckoo_on_surface_secondary"
         android:layout_marginBottom="40dp"/>
 
     <com.google.android.material.button.MaterialButton
@@ -36,7 +36,7 @@
         app:icon="@drawable/ic_check"
         app:iconTint="@android:color/white"
         app:iconGravity="textStart"
-        android:backgroundTint="?attr/colorSuccess"
+        android:backgroundTint="@color/cuckoo_success"
         android:layout_marginBottom="16dp"/>
 
     <com.google.android.material.button.MaterialButton
@@ -49,6 +49,6 @@
         app:icon="@drawable/ic_close"
         app:iconTint="@android:color/white"
         app:iconGravity="textStart"
-        android:backgroundTint="?attr/colorError"/>
+        android:backgroundTint="@color/cuckoo_error"/>
 
 </LinearLayout>

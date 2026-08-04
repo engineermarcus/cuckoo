@@ -14,13 +14,13 @@
         android:layout_weight="1"
         android:textSize="15sp"
         android:textStyle="bold"
-        android:textColor="?attr/colorOnSurface"/>
+        android:textColor="@color/cuckoo_on_surface"/>
 
     <ImageView
         android:layout_width="16dp"
         android:layout_height="16dp"
         android:src="@drawable/ic_check"
-        app:tint="?attr/colorSuccess"
+        app:tint="@color/cuckoo_success"
         android:layout_marginEnd="4dp"/>
 
     <TextView
@@ -28,14 +28,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"
-        android:textColor="?attr/colorSuccess"
+        android:textColor="@color/cuckoo_success"
         android:layout_marginEnd="16dp"/>
 
     <ImageView
         android:layout_width="16dp"
         android:layout_height="16dp"
         android:src="@drawable/ic_close"
-        app:tint="?attr/colorError"
+        app:tint="@color/cuckoo_error"
         android:layout_marginEnd="4dp"/>
 
     <TextView
@@ -43,6 +43,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"
-        android:textColor="?attr/colorError"/>
+        android:textColor="@color/cuckoo_error"/>
 
 </LinearLayout>
